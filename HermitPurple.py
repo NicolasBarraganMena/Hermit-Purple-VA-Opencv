@@ -47,6 +47,7 @@ with mp_face_detection.FaceDetection(min_detection_confidence=0.8) as face_detec
         
         elif(estado == 2): #Update
             #print("Update")
+            #preparar la camara para realizar el face detection
             fotograma = cv2.flip(fotograma,1)
             fotograma_rgb = cv2.cvtColor(fotograma, cv2.COLOR_BGR2RGB)
             
@@ -66,6 +67,30 @@ with mp_face_detection.FaceDetection(min_detection_confidence=0.8) as face_detec
                     yN = int(detection.location_data.relative_keypoints[2].y * height)
                     #Dibujar un circulo en la punta de la nariz
                     cv2.circle(fotograma,(xN,yN),10,(255,255,0), -1)
+            
+            #Detectar si entro en alguna region de interes
+            #ROI_superior
+            if(xN > ROI_superior[0] and xN < ROI_superior[2] and yN > ROI_superior[1] and yN < ROI_superior[3]):
+                #print("Se oprimio la flecha de arriba del mouse")
+                cv2.putText(fotograma,'UP',(350,40), cv2.FONT_HERSHEY_SIMPLEX, 0.75, (255,0,0), 1, cv2.LINE_AA)
+                #keyboard.press_and_release('up')
+            #ROI_inferior    
+            if(xN > ROI_inferior[0] and xN < ROI_inferior[2] and yN > ROI_inferior[1] and yN < ROI_inferior[3]):
+                #print("Se oprimio la flecha de abajo del mouse")
+                cv2.putText(fotograma,'DOWN',(350,390), cv2.FONT_HERSHEY_SIMPLEX, 0.75, (255,0,0), 1, cv2.LINE_AA)
+                #keyboard.press_and_release('down')
+            #ROI_izquierda     
+            if(xN > ROI_izquierda[0] and xN < ROI_izquierda[2] and yN > ROI_izquierda[1] and yN < ROI_izquierda[3]):
+                #print("Se oprimio la flecha izquierda del mouse")
+                cv2.putText(fotograma,'LEFT',(100,200), cv2.FONT_HERSHEY_SIMPLEX, 0.75, (255,0,0), 1, cv2.LINE_AA)
+                #keyboard.press_and_release('left')
+            #ROI_derecha    
+            if(xN > ROI_derecha[0] and xN < ROI_derecha[2] and yN > ROI_derecha[1] and yN < ROI_derecha[3]):
+                #print("Se oprimio la flecha derecha del mouse")
+                cv2.putText(fotograma,'RIGHT',(510,200), cv2.FONT_HERSHEY_SIMPLEX, 0.75, (255,0,0), 1, cv2.LINE_AA)
+                #keyboard.press_and_release('right')
+            else:
+                print("NONE")
             
             #Mostrar la captura
             cv2.imshow("Camara", fotograma)
