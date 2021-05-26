@@ -50,6 +50,9 @@ with mp_face_detection.FaceDetection(min_detection_confidence=0.8) as face_detec
             #print("Update")
             #preparar la camara para realizar el face detection
             fotograma = cv2.flip(fotograma,1)
+            #fotograma_alpha = np.zeros(fotograma.shape[:2], np.uint8)
+            fotograma_alpha = fotograma.copy()
+            alpha = 0.4
             fotograma_rgb = cv2.cvtColor(fotograma, cv2.COLOR_BGR2RGB)
             
             #Imprimir las regiones de interes
@@ -74,30 +77,36 @@ with mp_face_detection.FaceDetection(min_detection_confidence=0.8) as face_detec
             if(xN > ROI_superior[0] and xN < ROI_superior[2] and yN > ROI_superior[1] and yN < ROI_superior[3]):
                 #print("Se oprimio la flecha de arriba del mouse")
                 cv2.putText(fotograma,'UP',(350,40), cv2.FONT_HERSHEY_SIMPLEX, 0.75, (255,0,0), 1, cv2.LINE_AA)
-                cv2.rectangle(fotograma,(ROI_superior[0],ROI_superior[1]),(ROI_superior[2],ROI_superior[3]),(0,0,255),-1)
+                #cv2.rectangle(fotograma,(ROI_superior[0],ROI_superior[1]),(ROI_superior[2],ROI_superior[3]),(0,0,255),-1)
+                cv2.rectangle(fotograma_alpha,(ROI_superior[0],ROI_superior[1]),(ROI_superior[2],ROI_superior[3]),(0,0,255),-1)
                 #keyboard.press_and_release('up')
             #ROI_inferior    
             if(xN > ROI_inferior[0] and xN < ROI_inferior[2] and yN > ROI_inferior[1] and yN < ROI_inferior[3]):
                 #print("Se oprimio la flecha de abajo del mouse")
                 cv2.putText(fotograma,'DOWN',(350,390), cv2.FONT_HERSHEY_SIMPLEX, 0.75, (255,0,0), 1, cv2.LINE_AA)
-                cv2.rectangle(fotograma,(ROI_inferior[0],ROI_inferior[1]),(ROI_inferior[2],ROI_inferior[3]),(0,0,255),-1)
+                #cv2.rectangle(fotograma,(ROI_inferior[0],ROI_inferior[1]),(ROI_inferior[2],ROI_inferior[3]),(0,0,255),-1)
+                cv2.rectangle(fotograma_alpha,(ROI_inferior[0],ROI_inferior[1]),(ROI_inferior[2],ROI_inferior[3]),(0,0,255),-1)
                 #keyboard.press_and_release('down')
             #ROI_izquierda     
             if(xN > ROI_izquierda[0] and xN < ROI_izquierda[2] and yN > ROI_izquierda[1] and yN < ROI_izquierda[3]):
                 #print("Se oprimio la flecha izquierda del mouse")
                 cv2.putText(fotograma,'LEFT',(100,200), cv2.FONT_HERSHEY_SIMPLEX, 0.75, (255,0,0), 1, cv2.LINE_AA)
-                cv2.rectangle(fotograma,(ROI_izquierda[0],ROI_izquierda[1]),(ROI_izquierda[2],ROI_izquierda[3]),(0,0,255),-1)
+                #cv2.rectangle(fotograma,(ROI_izquierda[0],ROI_izquierda[1]),(ROI_izquierda[2],ROI_izquierda[3]),(0,0,255),-1)
+                cv2.rectangle(fotograma_alpha,(ROI_izquierda[0],ROI_izquierda[1]),(ROI_izquierda[2],ROI_izquierda[3]),(0,0,255),-1)
                 #keyboard.press_and_release('left')
             #ROI_derecha    
             if(xN > ROI_derecha[0] and xN < ROI_derecha[2] and yN > ROI_derecha[1] and yN < ROI_derecha[3]):
                 #print("Se oprimio la flecha derecha del mouse")
                 cv2.putText(fotograma,'RIGHT',(510,200), cv2.FONT_HERSHEY_SIMPLEX, 0.75, (255,0,0), 1, cv2.LINE_AA)
-                cv2.rectangle(fotograma,(ROI_derecha[0],ROI_derecha[1]),(ROI_derecha[2],ROI_derecha[3]),(0,0,255),-1)
+                #cv2.rectangle(fotograma,(ROI_derecha[0],ROI_derecha[1]),(ROI_derecha[2],ROI_derecha[3]),(0,0,255),-1)
+                cv2.rectangle(fotograma_alpha,(ROI_derecha[0],ROI_derecha[1]),(ROI_derecha[2],ROI_derecha[3]),(0,0,255),-1)
                 #keyboard.press_and_release('right')
             else:
                 print("NONE")
             
             #Mostrar la captura
+            fotograma = cv2.addWeighted(fotograma_alpha, alpha, fotograma, 1 - alpha, 0)
+            #cv2.imshow("Camara", image_new)
             cv2.imshow("Camara", fotograma)
             
             #Comandos de teclado
