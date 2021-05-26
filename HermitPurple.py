@@ -106,7 +106,6 @@ with mp_face_detection.FaceDetection(min_detection_confidence=0.8) as face_detec
             
             #Mostrar la captura
             fotograma = cv2.addWeighted(fotograma_alpha, alpha, fotograma, 1 - alpha, 0)
-            #cv2.imshow("Camara", image_new)
             cv2.imshow("Camara", fotograma)
             
             #Comandos de teclado
