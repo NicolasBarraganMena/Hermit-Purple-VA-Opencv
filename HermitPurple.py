@@ -80,6 +80,7 @@ with mp_face_detection.FaceDetection(min_detection_confidence=0.8) as face_detec
                 #cv2.rectangle(fotograma,(ROI_superior[0],ROI_superior[1]),(ROI_superior[2],ROI_superior[3]),(0,0,255),-1)
                 cv2.rectangle(fotograma_alpha,(ROI_superior[0],ROI_superior[1]),(ROI_superior[2],ROI_superior[3]),(0,0,255),-1)
                 #keyboard.press_and_release('up')
+                pyautogui.press('up')
             #ROI_inferior    
             if(xN > ROI_inferior[0] and xN < ROI_inferior[2] and yN > ROI_inferior[1] and yN < ROI_inferior[3]):
                 #print("Se oprimio la flecha de abajo del mouse")
@@ -87,6 +88,7 @@ with mp_face_detection.FaceDetection(min_detection_confidence=0.8) as face_detec
                 #cv2.rectangle(fotograma,(ROI_inferior[0],ROI_inferior[1]),(ROI_inferior[2],ROI_inferior[3]),(0,0,255),-1)
                 cv2.rectangle(fotograma_alpha,(ROI_inferior[0],ROI_inferior[1]),(ROI_inferior[2],ROI_inferior[3]),(0,0,255),-1)
                 #keyboard.press_and_release('down')
+                pyautogui.press('down')
             #ROI_izquierda     
             if(xN > ROI_izquierda[0] and xN < ROI_izquierda[2] and yN > ROI_izquierda[1] and yN < ROI_izquierda[3]):
                 #print("Se oprimio la flecha izquierda del mouse")
@@ -94,6 +96,7 @@ with mp_face_detection.FaceDetection(min_detection_confidence=0.8) as face_detec
                 #cv2.rectangle(fotograma,(ROI_izquierda[0],ROI_izquierda[1]),(ROI_izquierda[2],ROI_izquierda[3]),(0,0,255),-1)
                 cv2.rectangle(fotograma_alpha,(ROI_izquierda[0],ROI_izquierda[1]),(ROI_izquierda[2],ROI_izquierda[3]),(0,0,255),-1)
                 #keyboard.press_and_release('left')
+                pyautogui.press('left')
             #ROI_derecha    
             if(xN > ROI_derecha[0] and xN < ROI_derecha[2] and yN > ROI_derecha[1] and yN < ROI_derecha[3]):
                 #print("Se oprimio la flecha derecha del mouse")
@@ -101,6 +104,7 @@ with mp_face_detection.FaceDetection(min_detection_confidence=0.8) as face_detec
                 #cv2.rectangle(fotograma,(ROI_derecha[0],ROI_derecha[1]),(ROI_derecha[2],ROI_derecha[3]),(0,0,255),-1)
                 cv2.rectangle(fotograma_alpha,(ROI_derecha[0],ROI_derecha[1]),(ROI_derecha[2],ROI_derecha[3]),(0,0,255),-1)
                 #keyboard.press_and_release('right')
+                pyautogui.press('right')
             else:
                 print("NONE")
             
